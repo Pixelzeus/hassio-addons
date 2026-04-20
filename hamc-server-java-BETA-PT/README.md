@@ -14,6 +14,12 @@ When `TYPE` is set to `FORGE`, you can use `FORGE_VERSION` to control the Forge 
 - `FORGE_VERSION: "latest"` uses the latest available Forge version
 - `FORGE_VERSION: "<version>"` uses a specific Forge version (example: `47.2.0`)
 
+### Mods and plugins (Forge, Fabric, …)
+
+Put mod or plugin `.jar` files in the `mods` folder **inside the add-on configuration directory** (Home Assistant: **Add-on** → **Open folder** / `addon_config` for this add-on). That path is `/data` in the container, so use `…/mods/` next to your world and `server.properties`.
+
+Do **not** rely on the generic `hassio_data` share for mods unless you copy files into the configuration `mods` folder above — the running server only loads mods from `/data/mods`.
+
 To access the Minecraft server from outside your network, forward port 25565 (TCP) on your router. Then connect using:
 
 ```

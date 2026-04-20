@@ -15,6 +15,12 @@ ENV S6_CMD_WAIT_FOR_SERVICES=1 \
     S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0 \
     S6_SERVICES_GRACETIME=0
 
+# itzg syncs COPY_MODS_SRC (default /mods) into /data/mods and COPY_PLUGINS_SRC into /data/plugins.
+# Home Assistant mounts addon_config at /data; image-side /mods and /plugins are empty, so sync can
+# wipe user content. Point sources at the same paths under /data so sync is a no-op for user files.
+ENV COPY_MODS_SRC=/data/mods \
+    COPY_PLUGINS_SRC=/data/plugins
+
 ##################
 # 3 Install apps #
 ##################
